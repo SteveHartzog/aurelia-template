@@ -1,0 +1,31 @@
+<template>
+  <require from="../../templates/rr/google-plus.html"></require>
+
+    <section class="right-rail">
+      <google-plus class="rr-box"></google-plus>      
+      <br/>
+    </section>
+    
+    <section class="content-well">
+      <h2>${heading}</h2>
+      
+      <p>I've been an engineer for over 20 years. I've stumbled through being a sys admin, help desk technician, main frame operator, developer and much more.</p>
+      
+      <div class="flexRow">
+        <div repeat.for="row of capabilities" class="card small hoverable col s11 m5" style="margin-right:10px;">
+          <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" src="images/${row.image}">
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">${row.title}<i class="material-icons right">more_vert</i></span>
+            <p><a href="#">This is a link</a></p>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">${row.title}<i class="material-icons right">close</i></span>
+            <p>${row.description}</p>
+          </div>
+        </div>
+      </div>
+
+    </section> 
+</template>

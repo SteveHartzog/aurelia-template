@@ -1,0 +1,45 @@
+<template bindable="router">
+  <nav class="navbar navbar-sbc navbar-fixed-top" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#sbc-navbar">
+        <span class="sr-only">Toggle Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+        <img class="logo" src="/images/sbc.png" />
+        <span>${router.title}</span>
+      </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="sbc-navbar">
+      <ul class="nav navbar-nav">
+        <li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
+          <!-- if route has no submenu -->
+          <a href.bind="row.href" if.bind="!row.settings.subMenu"><i class="fa fa-home" if.bind="row.title === 'Home'">&nbsp;</i>${row.title}</a>
+          
+          <!-- if route has submenu -->
+          <a if.bind="row.settings.subMenu" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            ${row.title} <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li repeat.for="menu of row.settings.subMenu">
+              <a href.bind="menu.href">${menu.title}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="loader" if.bind="router.isNavigating">
+          <i class="fa fa-spinner fa-spin fa-2x"></i>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="https://login.microsoftonline.com/">Login</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</template>

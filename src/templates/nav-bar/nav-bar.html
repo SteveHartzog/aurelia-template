@@ -1,0 +1,45 @@
+<template router.bind="router">
+  
+  <!-- Sub Navs -->
+  <ul repeat.for="row of router.navigation" style="margin-top:64px;" class="dropdown-content" id="${'dropdown' + $index}" if.bind="row.settings.subMenu">
+    <li repeat.for="menu of row.settings.subMenu">
+      <a href.bind="menu.href">${menu.title}</a>
+    </li>
+  </ul>
+  
+  
+  <nav class="blue darken-4">
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">
+        <img class="logo" src="/images/logo.png"/>
+        <span class="logo">${router.title}</span>
+      </a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      
+      <!-- Desktop Nav -->
+      <ul class="right hide-on-med-and-down">
+        <li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
+          <!-- if route has no submenu -->
+          <a href.bind="row.href" if.bind="!row.settings.subMenu">
+            ${row.title}
+          </a>
+
+          <!-- if route has submenu -->
+          <a href="#!" if.bind="row.settings.subMenu" class="dropdown-button" data-activates="${'dropdown' + $index}">
+            ${row.title} <i class="material-icons right">arrow_drop_down</i>
+          </a>
+         
+        </li>
+        
+        <li>
+          <a href="https://login.microsoftonline.com/">Login</a>
+        </li>
+      </ul>
+      
+      <!-- Mobile Nav -->
+      <ul class="side-nav" id="mobile-demo">
+        <li repeat.for="row of router.navigation"><a href.bind="row.href">${row.title}</a></li>
+      </ul>
+    </div>
+  </nav>
+</template>
